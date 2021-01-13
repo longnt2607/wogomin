@@ -1,0 +1,125 @@
+/*-----option menu top-----*/
+.option-item{
+	width: 100px;
+	height: 100px;
+	background-color: #edecfd;
+	border-radius: 10px;
+}
+.option-item a:hover{
+	text-decoration: none;
+}
+.item-header{
+	height: 80%;
+}
+.item-content{
+	height: 20%;
+}
+.item-header img{
+	/*height: 100%;*/
+}
+.option-item span{
+	font-size: 0.8em;
+	color: #FFA800;
+}
+.arrow-down{
+	width: 0;
+	height: 0;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #6c63ff;
+	/*margin: 0;
+	padding: 0;*/
+	visibility: hidden;
+	z-index: -1;
+}
+.option-item:hover{
+	background-color: #6c63ff;
+	transition: 0.5s;
+}
+.option-item:hover .arrow-down{
+	visibility: visible;
+	border-top: 20px solid #6c63ff;
+}
+/*-----payment content-----*/
+.payment{
+	border: 2px solid #edecfd;
+	border-radius: 5px;
+	display: none;
+}
+.active{
+	display: block;
+}
+.payment h3{
+	color: #6c63ff;
+}
+.payment hr{
+	border: 1px solid #6c63ff;
+}
+.payment select, .payment input{
+	border: none;
+	border-radius: 5px;
+	background-color: #edecfd;
+	width: 100%;
+	height: 40px;
+	padding: 0px 10px;
+	margin: 10px 0px;
+}
+.btn-confirm{
+	background-color: #6c63ff;
+	width: 100%;
+	height: 40px;
+	border-radius: 5px;
+	color: white;
+	margin: 10px 0px;
+}
+.text-blue{
+	color: #79cece;
+}
+/*-----banks logo-----*/
+body {
+    padding:20px;
+    color:#293C56;
+}
+
+.icheckbox_flat-blue, .iradio_flat-blue {
+    top:-2px;
+    margin-right:5px;
+}
+.txtGray {color:#798594;}
+.bank-group {margin-left: 30px; max-width: 850px;}
+div, div:hover{ color:#293C56;}
+div.bank-item {
+    display: inline-block;
+    width:180px;
+    height:48px;
+    padding:10px;
+    border-radius:4px;
+    border:2px solid #edecfd;
+    position:relative;
+    vertical-align: top;
+    margin-right:10px;
+    margin-bottom:15px;
+    font-size:13px;
+}
+
+a.bank-item .checkmark {
+    display:none;
+    width:20px;
+    height: 20px;
+}
+a.bank-item.selected .checkmark {
+    display: block;
+    position: absolute;
+    top:-10px;
+    right:-10px;
+    margin-right:0;
+}
+a.bank-item.selected, a.bank-item:hover  {
+    border:2px solid #04BE04;
+}
+
+a.bank-item img {
+    vertical-align: middle!important;
+    display:inline-block;
+    margin-right:5px;
+}

@@ -1,0 +1,168 @@
+.wrapper-inner {
+    margin : 0 300px;
+}
+#td-profile{
+    text-align: center;
+    padding : 7px 40px;
+}
+.profile{
+    padding-top : 25px;
+    border: 1px solid;
+    float: left;
+    border-top: none;
+}
+#name, #fname, #location, #email, #phone, #old-password, #new-password{
+    width: 400px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    padding :7px 15px;
+    background-color :rgb(238, 238, 238);
+    border: 2px solid rgb(209, 208, 208);
+}
+#save{
+    margin-left: 300px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    width: 100px;
+    border-radius: 16px;
+    border: 0px;
+    background-color: rgb(91, 8, 245);
+    color: white;
+    padding-bottom: 5px;
+}
+#name:focus, #fname:focus, #location:focus, #email:focus, #phone:focus, #old-password:focus, #new-password:focus{
+    outline:none;
+    border: 2px solid rgb(209, 208, 208);
+    border-radius: 12px;
+}
+:focus{
+    border: none;
+}
+#li-profile{
+    margin: 15px 0px;
+}
+#a-avt:hover, #forgotpass:hover{
+    text-decoration: none;
+}
+#a-profile:hover{
+    text-decoration: none;
+    color :black;
+}
+#a-profile{
+    color: black;
+    width : 252px;
+}
+#avatar{
+    width: 120%;
+    border-radius: 50%;
+}
+.info-avt{
+    margin-top: 15px;
+}
+.avt{
+    padding-top : 25px;
+    border: 1px solid;
+    border-left: none;
+    border-top: none;
+    padding-left: 100px;
+    height: auto;
+}
+p#info-account{
+    margin-top: 25px;
+}
+#changepass{
+    margin-left: 135px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    width: 150px;
+    border-radius: 16px;
+    border: 0px;
+    background-color: rgb(91, 8, 245);
+    color: white;
+    padding-bottom: 5px;
+}
+.form-control{
+    border-radius: 16px;
+}
+.nav-item{
+    margin: 0px 15px;
+}
+#icavt{
+    width:100%;
+    border-radius: 50%;
+    float: right;
+    padding: 0px 0px;
+}
+#td-profile:focus{
+    border-left: 1px solid red;
+}
+.fa{
+    color: white;
+}
+.w3-sidebar{
+    height:100%;
+    width:90%;
+    background-color:#fff;
+    position:absolute!important;
+    z-index:1;
+    overflow:auto
+}
+.w3-bar-block{
+    width:90%
+}
+
+.w3-bar-item{
+    width:90%;
+    display:block;
+    padding:8px 12px;
+    text-align:center;
+    border:none;
+    white-space:normal;
+    float:none;
+    outline:0
+}
+.w3-block{
+    display:block;
+    width:90%
+}
+.w3-bar-item:hover{
+    background-color:grey!important
+}
+.w3-black{
+    color:#fff!important;
+    background-color:grey!important
+}
+.w3-xxlarge{
+    font-size:24px!important
+}
+#pro{
+    width: 70%;
+    border-radius: 50%;
+}
+.add{
+    padding-top: 40px;
+}
+#change-avtpro{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 270px;
+    border-radius: 16px;
+    border: 0px;
+    background-color: rgb(91, 8, 245);
+    color: white;
+    padding-bottom: 5px;
+    box-shadow: 2px 5px 5px #888888;
+}
+hr{
+    background-color:black
+}
+#phonenumber, #pass, #mail, #wallet{
+    margin:10px 0px;
+}
+
+
+
+
+
+
