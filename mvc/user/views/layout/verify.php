@@ -49,10 +49,12 @@
     </header>
 	<div class="container">
         <div class="row">
-            <div class="col-md-8 col-12" id="fom1">
-                <img src="/wogomin/public/images/user/bs.png" id="hinhleft1">
+            <div class="col-md-6">
+                <div class="hidden-after">
+                    <img src="/wogomin/public/images/user/bs.png" id="hinhleft1">
+                </div>
             </div>
-            <div class="col-md-4 col-12">
+            <div class="col-md-6" id="rps">
                 <form action="" method="post" id="khung" onsubmit="return false">
 
                     <div id="hinh2">

@@ -20,23 +20,25 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-12" id="fom1">
-				<img src="/wogomin/public/images/user/bs.png" id="hinhleft">
+			<div class="col-md-6">
+				<div class="hidden-after">
+					<img src="/wogomin/public/images/user/bs.png" id="hinhleft">
+				</div>
 			</div>
-			<div class="col-md-4 col-12">
-				<form action="login.php" method="post" id="khung">
+			<div class="col-md-6" id="rps">
+				<form action="" method="post" id="khung" onsubmit="return false">
 					<div  id="hinh1">
 						<a href="./login"><i class="fa fa-arrow-left" id="back"></i></a>
 						<div class="d-flex">
 							<h3 id="cap1"><b>Forgot Password</b></h3>	
 							<div id="m-member">
-								<a href="profile.php"><small>Please enter your number phone</small></a>
+								<small>Please enter your number phone</small>
 							</div>
 							<div class="input-icons"> 
 								<i class="fa fa-mobile icon" id="icon1"> 
 								</i> 
-								<select>
-									<ins><option>+84</option></ins>
+								<select id="country-codes" onmousedown="if(this.options.length>10){this.size=10;}"  onchange='this.size=0;' onblur="this.size=0;">
+									<option>+84</option>
 								</select>
 								<input class="input-field" type="text" name="phone" placeholder="Phone number"> 
 							</div> 
@@ -68,9 +70,34 @@
 		})
 	</script>
 	<script>
+		$(document).ready(function() {
+		    $.ajax({
+		        type: "GET",
+		        url: "/wogomin/public/data/country-codes.json",
+		        dataType: "text",
+		        success: function(data) {
+		        	var data = JSON.parse(data);
+		        	for (var i = data.length - 1; i >= 0; i--) {
+		        		// console.log(data[i].dial_code);
+
+		        		var node = document.createElement("option");
+						var textnode = document.createTextNode(data[i].dial_code);
+						node.appendChild(textnode);
+						document.getElementById("country-codes").appendChild(node);
+		        	}
+		        },
+		        error: function (e) {
+		        	console.log(e);
+		        }
+		     });
+		});
+
+		function isPhone(phone) {
+			return /^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$/.test(phone);
+		}
+
 		$('#buttonsubmit').click(function() {
 			var phoneValue = $('input[name=phone]').val();
-
 
 			if (phoneValue == '') {
 				$("#phoneE").text("Please fill in this field");
@@ -83,10 +110,25 @@
 					$("#phoneE").text("");
 				}
 			}
-			if (  phoneValue != "" ) {
-				var form_data = new FormData();
-				form_data.append('phone', phoneValue); 
 
+			if (  phoneValue != "") {
+				// $.post("/wogomin/home/renewPassword", { 
+		  //    		phoneNumber: phoneValue
+		  //    	}, function(data) {
+		  //    		// swal(data);
+			 //        if (data == 1) {
+    //                     // swal('Welcome back');
+                        window.location.href = "./recovery/?phone=" + phoneValue;
+    //                     // window.location.href = "./index"; // homepage.php
+    //                 } else {
+    //                     swal({
+    //                         title: "Error",
+    //                         text: "There was an error. Please try again later",
+    //                         icon: "error",
+    //                         button: "OK",
+    //                     });
+    //                 }
+				// });
 			}
 		});
 	</script>

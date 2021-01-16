@@ -19,10 +19,12 @@
 <body>
 	<div class="container">
     <div class="row">
-      <div class="col-md-8 col-12" id="fom1">
-        <img src="/wogomin/public/images/user/bs.png" id="hinhleft1">
+      <div class="col-md-6">
+        <div class="hidden-after">
+          <img src="/wogomin/public/images/user/bs.png" id="hinhleft1">
+        </div>
       </div>
-      <div class="col-md-4 col-12">
+      <div class="col-md-6" id="rps">
 
         <form action="" method="post" id="khung" onsubmit="return false">
 
@@ -32,27 +34,27 @@
               <small id="step">Step 2 of 2</small>
               <h3 id="cap"><b>Orther Information</b></h3>	
               <div class="input-icons" id="avata"> 
-                <input type="radio" name="female" id="card" value="0">
-                <label for="card">
-                  <i class="fa fa-female" id="gioitinh"></i>
-
-                </label>
-                <input type="radio" name="male" id="cash" value="1">
+                
+                <input type="radio" name="payment" id="cash" value="1" checked="checked">
                 <label for="cash">
                   <i class="fa fa-male"  id="gioitinh"></i>	
+                </label>
 
+                <input type="radio" name="payment" id="card" value="0">
+                <label for="card">
+                  <i class="fa fa-female" id="gioitinh"></i>
                 </label>
               </div> 
               <div class="input-icons"> 
                 <i class="far fa-calendar-alt" id="date"></i>
                 <input class="input-field" type="date" name="name" id="name" placeholder="Date of birth">  
               </div> 
-              <small id="nameE"></small>
+              <small id="dateE"></small>
               <div class="input-icons"> 
 
                 <input class="input-field" type="text" name="address" id="email" placeholder=" Address">
               </div> 
-              <small id="emailE"></small>
+              <small id="addressE"></small>
               <div id="ip2">
                 <button type="submit" class="btn-login" id="buttonsubmit">Done</button>
               </div>
@@ -74,28 +76,47 @@
 
   <script type="text/javascript">
     $('#buttonsubmit').on('click', function () {
-      var sex = $('input[name=male]').checked ? '1' : '0';
+      var sex = document.getElementById('cash').checked ? '1' : '0';
       var date = $('input[type=date]').val();
       var address = $('input[name=address]').val();
 
-      $.post("/wogomin/home/handling_Step_2", { 
-        sex: sex,
-        date: date,
-        address: address
-      }, function(data) {
-      // swal(data);
-      if (data == 1) {
-          // swal('Welcome back');
-          window.location.href = "./index";
-        } else {
-          swal({
-            title: "Error",
-            text: "There was an error. Please try again later.",
-            icon: "error",
-            button: "OK",
-          });
-        }
-      });
+      if (date == '') {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        date = today;
+      }
+      
+      if (address == '') {
+        $("#addressE").text("Please fill in this field");
+        return false;
+      } else {
+        $("#addressE").text("");
+      }
+
+      if (address != '') {
+        $.post("/wogomin/home/handling_Step_2", { 
+          sex: sex,
+          date: date,
+          address: address
+        }, function(data) {
+        // swal(data);
+        if (data == 1) {
+            // swal('Welcome back');
+            window.location.href = "./index";
+          } else {
+            swal({
+              title: "Error",
+              text: "There was an error. Please try again later.",
+              icon: "error",
+              button: "OK",
+            });
+          }
+        });
+      }
     });
   </script>
 

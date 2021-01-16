@@ -43,10 +43,12 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-12" id="fom1">
-				<img src="/wogomin/public/images/user/bs.png" id="hinhleft1">
+			<div class="col-md-6">
+				<div class="hidden-after">
+					<img src="/wogomin/public/images/user/bs.png" id="hinhleft1">
+				</div>
 			</div>
-			<div class="col-md-4 col-12">
+			<div class="col-md-6" id="rps">
 
 				<form action="" method="post" id="khung" onsubmit="return false">
 
@@ -55,22 +57,25 @@
 						<div class="d-flex">
 							<h3 id="cap"><b>Welcome to Wogomin</b></h3>	
 							<div class="input-icons"> 
-								<select id="sdt">
+								<select id="country-codes" onmousedown="if(this.options.length>10){this.size=10;}"  onchange='this.size=0;' onblur="this.size=0;">
 									<option>+84</option>
 								</select>
 								<input class="input-field" type="text" name="phone" placeholder="Phone number"> 
 							</div> 
 							<small id="phoneE"></small>
+
 							<div class="input-icons"> 
 								<input class="input-field" type="password" name="pass" id="password" placeholder="Password"> 
 								<i class="fa fa-eye" id="togglePassword"> </i>
 							</div> 
 							<small id="passE"></small>
+
 							<div class="input-icons"> 
 								<input class="input-field" type="password" name="cfpass" id="cfpassword" placeholder=" Confirm Password"> 
 								<i class="fa fa-eye" id="togglecfPassword"> </i>
-								<small id="cfpass"></small>
-							</div> 
+							</div>
+							<small id="cfpass"></small>
+
 							<div id="ip2">
 								<button type="submit" class="btn-login" id="buttonsubmit">
 									Next
@@ -104,87 +109,110 @@
 		})
 	</script>
 	<script>
-		// function show password here
+		$(document).ready(function() {
+			const togglePassword = document.querySelector('#togglePassword');
+			const password = document.querySelector('#password');
+			togglePassword.addEventListener('click', function (e) {
+			    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+			    password.setAttribute('type', type);
+			    this.classList.toggle('fa-eye-slash');
+			});
+
+			const togglecfPassword = document.querySelector('#togglecfPassword');
+			const cfpassword = document.querySelector('#cfpassword');
+			togglecfPassword.addEventListener('click', function (e) {
+			    const type = cfpassword.getAttribute('type') === 'password' ? 'text' : 'password';
+			    cfpassword.setAttribute('type', type);
+			    this.classList.toggle('fa-eye-slash');
+			});
+
+		    $.ajax({
+		        type: "GET",
+		        url: "/wogomin/public/data/country-codes.json",
+		        dataType: "text",
+		        success: function(data) {
+		        	var data = JSON.parse(data);
+		        	for (var i = data.length - 1; i >= 0; i--) {
+		        		// console.log(data[i].dial_code);
+
+		        		var node = document.createElement("option");
+						var textnode = document.createTextNode(data[i].dial_code);
+						node.appendChild(textnode);
+						document.getElementById("country-codes").appendChild(node);
+		        	}
+		        },
+		        error: function (e) {
+		        	console.log(e);
+		        }
+		     });
+		});
 
 		function isPhone(phone) {
 			return /^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$/.test(phone);
 		}
+
 		function isPass(pass) {
-			return /"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"/.test(pass);
+			return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(pass);
 		}
-		function iscfPass(cfpass) {
-			return /"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"/.test(cfpass);
-		}
+
 		$('#buttonsubmit').on('click', function () {
 			var phoneValue = $('input[name=phone]').val();
 			var passValue = $('input[name=pass]').val();
 			var cfpassValue = $('input[name=cfpass]').val();
 
-			$.post("/wogomin/home/checkPhoneNumber", { 
-	     		phoneNumber: phoneValue
-	     	}, function(data) {
-	     		// swal(data);
-		        if (data == 1) {
-		        	// swal('Welcome back');
-		//         	document.cookie = "phone=" + phoneValue;
-		//         	document.cookie = "password=" + passValue;
+			if (phoneValue == '') {
+	            $("#phoneE").text("Please fill in this field");
+	            return false;
+	        } else {
+	            if (!isPhone(phoneValue)) {
+	                $("#phoneE").text("Enter the phone number in the correct format");
+	                return false;
+	            } else {
+	                $("#phoneE").text("");
+	            }
+	        }
 
-		//         	if (!document.cookie.split('; ').find(row => row.startsWith('doSomethingOnlyOnce'))) {
-  //   document.cookie = "doSomethingOnlyOnce=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-  // }
+	        if (passValue == '') {
+	            $("#passE").text("Password required");
+	            return false;
+	        } else {
+	            if (!isPass(passValue)) {
+	                $("#passE").text("Wrong password");
+	                return false;
+	            } else {
+	                $("#passE").text("");
+	            }
+	        }
 
-		        	// swal(document.cookie);
-	                window.location.href = "./verify/?phone=" + phoneValue + "&password=" + md5(passValue);
-                } else {
-                	swal({
-                		title: "Error",
-                		text: "This phone number has been used",
-                		icon: "error",
-                		button: "OK",
-                	});
-                }
-			});
+	        if (cfpassValue == '') {
+	            $("#cfpass").text("Confirm password required");
+	            return false;
+	        } else {
+	            if (cfpassValue != passValue) {
+	                $("#cfpass").text("Confirm password wrong");
+	                return false;
+	            } else {
+	                $("#cfpass").text("");
+	            }
+	        }
 
-			// if (phoneValue == '') {
-			// 	$("#phoneE").text("Please fill in this field");
-			// 	return false;
-			// } else {
-			// 	if (!isPhone(phoneValue)) {
-			// 		$("#phoneE").text("Enter the phone number in the correct format");
-			// 		return false;
-			// 	} else {
-			// 		$("#phoneE").text("");
-			// 	}
-			// }
-
-			// if (passValue == '') {
-			// 	$("#passE").text("Password required");
-			// 	return false;
-			// } else {
-			// 	if (!isPass(passValue)) {
-			// 		$("#passE").text("Wrong password");
-			// 		return false;
-			// 	} else {
-			// 		$("#passE").text("");
-			// 	}
-			// }
-			// if (passValue == '') {
-			// 	$("#cfpass").text("Confirm Password required");
-			// 	return false;
-			// } else {
-			// 	if (!iscfPass(passValue)) {
-			// 		$("#cfpass").text("Wrong with password");
-			// 		return false;
-			// 	} else {
-			// 		$("#cfpass").text("");
-			// 	}
-			// }
-			// if (  phoneValue != "" && passValue != ""  && cfpassValue != "" ) {
-				// var form_data = new FormData();
-				// form_data.append('phone', phoneValue); 
-				// form_data.append('pass', passValue);
-				// form_data.append('cfpass', cfpassValue);   
-			// }
+	        if (phoneValue != '' && passValue != '' && cfpassValue != '') {
+				$.post("/wogomin/home/checkPhoneNumber", { 
+		     		phoneNumber: phoneValue
+		     	}, function(data) {
+		     		// swal(data);
+			        if (data == 1) {
+		                window.location.href = "./verify/?phone=" + phoneValue + "&password=" + md5(passValue);
+	                } else {
+	                	swal({
+	                		title: "Error",
+	                		text: "This phone number has been used",
+	                		icon: "error",
+	                		button: "OK",
+	                	});
+	                }
+				});
+			}
 		});
 	</script>
 </body>

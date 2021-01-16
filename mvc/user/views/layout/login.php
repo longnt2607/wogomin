@@ -26,10 +26,12 @@ session_start();
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-12" id="fom1">
-				<img src="/wogomin/public/images/user/bs.png" id="hinhleft">
+			<div class="col-md-6">
+				<div class="hidden-after">
+					<img src="/wogomin/public/images/user/bs.png" id="hinhleft">
+				</div>
 			</div>
-			<div class="col-md-4 col-12">
+			<div class="col-md-6" id="rps">
 				<form action="" method="post" id="khung" onsubmit="return false">
 					<div  id="hinh1">
 						<div class="d-flex">
@@ -54,7 +56,7 @@ session_start();
 						</div>
 						<div class="form-check">
 							<div id="forgot">
-								<a href="./forgotPassword"><small>Forgot password?</small></a>
+								<a href="./forgot"><small>Forgot password?</small></a>
 							</div>
 							<div id="n-member">
 								<small>Don't have an account?</small>
@@ -141,12 +143,12 @@ session_start();
 	            $("#passE").text("Password required");
 	            return false;
 	        } else {
-	            // if (!isPass(passValue)) {
-	            //     $("#passE").text("Wrong password");
-	            //     return false;
-	            // } else {
-	            //     $("#passE").text("");
-	            // }
+	            if (!isPass(passValue)) {
+	                $("#passE").text("Wrong password");
+	                return false;
+	            } else {
+	                $("#passE").text("");
+	            }
 	        }
 
 	        if (phoneValue != '' && passValue != '') {

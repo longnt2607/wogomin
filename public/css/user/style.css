@@ -1,102 +1,47 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
-body {
-	background-color: #edecfd;
-	flex-direction: column;
-	text-decoration: none;
-	
-}
 *{
-	font-family: roboto;
-	box-sizing: border-box;
-	text-decoration: none;
-	
+	font-family: Roboto;
 }
-small{
-	color: red;
+#rps{
+	padding-right: 0px;
+    padding-left: 0px;
 }
-select{
-
-	font-size: 14px;
-    border: 0px;
-    margin-left: 35px;
-	position: absolute;
-	color:#787878 ;
-}
-#sdt{
-	font-size: 14px;
-    border: 0px;
-    margin-left: 20px;
-	position: absolute;
-	color:#787878 ;
+body{
+    background-color: #edecff;
 }
 header{
-	margin-top: 40px;
+    margin-top: 45px;
 	width: 100%;
-	padding-left: 50px;
-	padding-bottom: 15px;
-	
+	padding-left: 20px;
 }
-#fom1{
-	display: flex;
-}
-@media screen and (max-width: 768px){
-	#fom1{display: none;}
-	
-}
-.row{
-	width: 90%;
-}
-#logo{
-	margin-bottom: 50px;
+header img{
+    width: 160px;
+	height: 20px;
+	margin-bottom: 35px;
 	margin-left: 100px;
 }
+.hidden-after img#hinhleft{
+    width: 100%;
+	margin-top: 60px;
+	padding-left: 60px;
+}
+@media screen and (max-width: 769px){
+    .hidden-after{
+        display: none;
+    }
+}
 #khung {
-	margin: 0;
+	margin: auto;
 	padding: 0;
 	width: 400px;
 	height: 490px;
-}
-#hinhleft{
-	width: 85%;
-	height: 75%;
-	margin-top: 60px;
-	padding-left: 60px;
-}
-#hinhleft1{
-	width: 85%;
-	height: 75%;
-	margin-top: 60px;
-	padding-left: 60px;
-}
-
-#back {
-    font-weight: 900;
-    padding-top: 10px;
-    padding-left: 13px;
-    width: 10%;
-}
-#cap{
-	padding-top: 15px;
-	padding-bottom: 10px;
-	color: #636cff;
-
 }
 #hinh1{
 	margin: 0;
 	padding: 0;
 	width: 400px;
-	height: 490px ;
-	border-color:rgb(81, 133, 230);
-	background-color: #fff;
-	color:black;
-	box-shadow: -13px 15px 50px -20px #787878;
-}
-#hinh2{
-	margin: 0;
-	padding: 0;
-	width: 400px;
-	height: 490px ;
+	height: 465px ;
 	border-color:rgb(81, 133, 230);
 	background-color: #fff;
 	color:black;
@@ -113,12 +58,6 @@ header{
 	padding-top: 45px;
 	padding-bottom: 20px;
 	color: #636cff;
-} 
-#form-control{
-	width: 280px;
-	height: 40px;
-	border:0px;
-	border-radius: 60px;
 }
 .input-icons i { 
 	position: absolute; 
@@ -137,40 +76,22 @@ header{
 .input-icons:focus{
 	border-radius: 50px;
 }
+#icon1{ 
+	font-size: 28px;
+	padding: 10px; 
+	color: #787878; 
+	min-width: 44px; 
+	text-align: center; 
+} 
 #icon{ 
 	font-size: 24px;
 	padding: 10px; 
 	color: #787878; 
 	min-width: 50px; 
 	text-align: center; 
-} 
-#icon1{ 
-	font-size: 28px;
-	padding: 10px; 
-	color: #787878; 
-	min-width: 50px; 
-	text-align: center; 
-} 
-.input-icons i #ic{
-	position: relative;
-}
-#togglePassword{
-	
-	padding: 10px; 
-	color: #787878; 
-	margin-left: 235px;
-	text-align: center; 
-
-}
-#togglecfPassword{
-	
-	padding: 10px; 
-	color: #787878; 
-	margin-left: 235px;
-	text-align: center; 
-
 }
 .input-field { 
+	outline: none;
 	width: 100%; 
 	height: 45px;
 	padding: 10px; 
@@ -188,10 +109,6 @@ header{
 	padding-top: 20px;
 	
 }
-
-h2 { 
-	color: green; 
-} 
 .btn-login{
 	width: 270px;
 	height: 45px;
@@ -201,69 +118,13 @@ h2 {
 	color: #fff;
 	font-size: 14px;
 }
-.btn-login a{
-	text-decoration: none;
-	color: #fff;
-}
 .form-check{
 	display: flex;
 	flex-direction:column;
 	justify-content:space-around;
 	align-items:center;
-	/*padding-top: 20px;
-	padding-left: 40px;
-	padding-right: 40px;*/
-}
-.form-check1{
-	display: flex;
-	flex-direction:column;
-	justify-content:space-around;
-	align-items:center;
-	padding-top: 50px;
 	padding-left: 40px;
 	padding-right: 40px;
-}
-
-#remember{
-	font-size: 14px;
-	color:#fff
-}
-#forgot{
-	padding-bottom: 40px;
-}
-#forgot  a{
-	text-decoration: none;
-}
-#forgot small{
-	text-decoration: none; 
-	font-size: 14px; 
-	color:#636cff;	
-}
-.form-create{
-	display: flex;
-	flex-direction:column;
-	justify-content:space-around;
-	align-items:center;
-	padding-top: 95px;
-}
-.form-create1{
-	display: flex;
-	flex-direction:column;
-	justify-content:space-around;
-	align-items:center;
-	padding-top: 140px;
-}
-#n-member{
-	text-decoration: none;
-	padding-bottom: 10px;
-}
-#n-member small{
-	font-size: 10px;
-	color: #787878;
-	text-decoration: none;
-}
-#n-member a{
-	text-decoration: none;
 }
 .btn-create{
 	display: flex;
@@ -278,7 +139,9 @@ h2 {
 	border-color:#787878;
 	font-size: 14px;
 }
-
+#btnsmall{
+	outline: none;
+}
 #create a{
 	text-decoration: none; 
 	font-size: 11px; 
@@ -289,31 +152,76 @@ h2 {
     width: 100%;
     font-weight: 400;
 }
-
-
-#m-member{
+#n-member{
 	text-decoration: none;
-	padding-bottom: 40px;
+	padding-bottom: 10px;
 }
-#m-member small{
-	font-size: 12px;
+#n-member small{
+	font-size: 10px;
 	color: #787878;
 	text-decoration: none;
 }
 #n-member a{
 	text-decoration: none;
 }
-#cap1{
-	padding-top: 20px;
-	padding-bottom: 15px;
-	color: #636cff;
+#forgot{
+	padding-top: 15px;
+	padding-bottom: 20px;
+}
+#forgot  a{
+	text-decoration: none;
+}
+#forgot small{
+	text-decoration: none; 
+	font-size: 14px; 
+	color:#636cff;	
+}
+select:not(.regis){
+
+	font-size: 12px;
+    border: 0px;
+    margin-left: 30px;
+	position: absolute;
+	color:#787878 ;
+}
+
+select.regis{
+
+	padding: 11px 0px;
+    border-radius: 50px 0px 0px 50px;
+    background-color: #636cff;
+    outline: none;
+}
+
+.input-field-phone {
+    outline: none;
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    text-align: center;
+    border: 0.1px;
+    border-style: solid;
+    border-color: #302f45;
+    border-radius: 0 50px 50px 0px;
+    font-size: 12px;
+}
+#hinhhleft{
+    width: 85%;
+	height: 75%;
+	margin-top: 60px;
+	padding-left: 60px;
+}
+#togglePassword{
+	padding: 10px; 
+	color: #787878; 
+	margin-left: 235px;
+	text-align: center; 
 
 }
-#ip3{
-	padding-bottom: 100px;
-	padding-top: 10px;
+#logo1{
+	padding-top: 60px;
+	padding-bottom: 40px;
 }
-
 #cap2{
 	padding-top: 15px;
 	padding-bottom: 10px;
@@ -331,12 +239,76 @@ h2 {
 #y-member a{
 	text-decoration: none;
 }
-#logo1{
+#ip4{
 	padding-top: 60px;
+}
+.btn-login a{
+	text-decoration: none;
+	color: #fff;
+}
+/* forget */
+#m-member{
+	text-decoration: none;
 	padding-bottom: 40px;
 }
-#ip4{
-	padding-top: 70px;
+#m-member small{
+	font-size: 12px;
+	color: #787878;
+	text-decoration: none;
+}
+#cap1{
+	padding-top: 20px;
+	padding-bottom: 15px;
+	color: #636cff;
+
+}
+#buttonsubmit{
+	outline: none;
+}
+#ip3{
+	padding-bottom: 100px;
+	padding-top: 10px;
+}
+#back {
+    font-weight: 900;
+    padding-top: 10px;
+    padding-left: 5%;
+    width: 10%;
+}
+/* info */
+#hinh2{
+	margin: 0;
+	padding: 0;
+	width: 400px;
+	height: 465px ;
+	border-color:rgb(81, 133, 230);
+	background-color: #fff;
+	color:black;
+	box-shadow: -13px 15px 50px -20px #787878;
+}
+#togglecfPassword{
+	
+	padding: 10px; 
+	color: #787878; 
+	margin-left: 235px;
+	text-align: center; 
+
+}
+#cap{
+	padding-top: 15px;
+	padding-bottom: 10px;
+	color: #636cff;
+
+}
+
+.form-check1{
+	display: flex;
+	flex-direction:column;
+	justify-content:space-around;
+	align-items:center;
+	padding-top: 40px;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 #avt{ display: flex;
 	text-align: center;
@@ -354,30 +326,18 @@ h2 {
     padding-left: 63px;
     padding-right: 65px;
 }
-#step{
-	font-size: 15px;
-	color: #787878;
-	text-decoration: none;
-}
-#date{ 
-	font-size: 20px;
-	padding: 10px; 
-	color: #636cff; 
-	min-width: 50px; 
-	text-align: center; 
-}
 input[type="radio"]{
 	-webkit-appearance:none;
 }
-label{
-	height: 70px;
-	width: 70px;
-	border:1px solid #787878;
-	position: relative;
-	margin: auto;
-	border-radius: 50px;
-	color:#787878;
-	transition: 0.5s;
+label {
+    height: 70px;
+    width: 70px;
+    border: 1px solid #787878;
+    position: relative;
+    margin: auto;
+    border-radius: 50px;
+    color: #787878;
+    transition: 0.5s;
 }
 #gioitinh{
 	font-size: 30px;
@@ -400,22 +360,6 @@ input[type="radio"]:checked + label{
 	color: white;
 	box-shadow: 0 15px 45px rgba(24,249,141,0.2);
 }
-#code-member{
-	margin-top: 30px;
-}
-#code-member small{
-	color: #787878;
-}
-.input-icons1 { 
-	width: 100%;
-	padding-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    padding-left: 70px;
-    padding-right: 70px;
-} 
 #mc{
 
 	margin: 0 5px;
@@ -427,23 +371,24 @@ input[type="radio"]:checked + label{
 	outline: none;
 	width: 20%;
 	transition: all .2s ease-in-out;
-
-	
-	&:focus {
-	  border-color: purple;
-	  box-shadow: 0 0 5px purple inset;
-	}
-	
-	&::selection {
-	  background: transparent;
-	}
 }
-.input-icons1  #mc{
-	position: relative;
-}
-#ip5{
 
-	padding-bottom: 20px;
+#mc:focus {
+	border-color: purple;
+	box-shadow: 0 0 5px purple inset;
+  }
+#mc::selection{
+	background: transparent;
+}
+.input-icons1 { 
+	width: 100%;
+	padding-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 70px;
+    padding-right: 70px;
 }
 .input-icons2 {
     width: 100%;
@@ -455,8 +400,12 @@ input[type="radio"]:checked + label{
     padding-left: 70px;
     padding-right: 70px;
 }
+#ip5{
+
+	padding-bottom: 30px;
+}
 #forgot1 {
-    /*padding-bottom: 30px;*/
+    padding-bottom: 30px;
 }
 #forgot1 small {
 	font-size: 16px; 
@@ -474,3 +423,21 @@ input[type="radio"]:checked + label{
 	color: #787878;
 	font-size: 15px;
 }
+small{
+		color: red;
+	}
+	#step{
+		font-size: 15px;
+		color: #787878;
+		text-decoration: none;
+	}	
+	#code-member small{
+		color: #787878;
+	}
+	#sdt{
+		font-size: 14px;
+		border: 0px;
+		margin-left: 20px;
+		position: absolute;
+		color:#787878 ;
+	}
