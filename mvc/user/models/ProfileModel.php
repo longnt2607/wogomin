@@ -65,56 +65,73 @@ class ProfileModel extends DB{
     public function renewPassword()
     {
     	$phoneNumber = isset($_POST['phoneNumber']) ? $_POST['phoneNumber'] : ""; // check SQL injection??
+        $newPassword = isset($_POST['newPass']) ? $_POST['newPass'] : '';
 
-    	$sql = 'select * from user where phone = "'.$phoneNumber.'"';
-    	$data = $this->getData($sql);
+        $sql = 'select * from user where phone = "'.$phoneNumber.'"';
+        $data = $this->getData($sql);
+        if ($data != NULL) {
+            $t = $this->updateData('user', 'password', md5($newPassword), 'phone', $phoneNumber);
+            if ($t === false) { // can not update
+                echo 0;
+                die();
+            } else {
+                echo 1;
+                die();
+            }
+        } else {
+            echo 0;
+            die();
+        }       
 
-    	$length = 8;
-    	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*(){}[],./?';
-    	$mailBody = substr(str_shuffle($chars), 0, $length);
+    	// $sql = 'select * from user where phone = "'.$phoneNumber.'"';
+    	// $data = $this->getData($sql);
+
+  //   	$length = 8;
+  //   	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*(){}[],./?';
+  //   	$mailBody = substr(str_shuffle($chars), 0, $length);
 
 
 
-		require 'PHPMailer_5.2.0/Exception.php';
-		require 'PHPMailer_5.2.0/PHPMailer.php';
-		require 'PHPMailer_5.2.0/SMTP.php';
+		// require 'PHPMailer_5.2.0/Exception.php';
+		// require 'PHPMailer_5.2.0/PHPMailer.php';
+		// require 'PHPMailer_5.2.0/SMTP.php';
 
-		$mail = new PHPMailer();
-		$mail->isSMTP();
-		$mail->Host = "smtp.gmail.com";  // specify main and backup server
-		$mail->SMTPAuth = true;     // turn on SMTP authentication
-		$mail->SMTPSecure = "tls";
-		$mail->Port = 587;
+		// $mail = new PHPMailer();
+		// $mail->isSMTP();
+		// $mail->Host = "smtp.gmail.com";  // specify main and backup server
+		// $mail->SMTPAuth = true;     // turn on SMTP authentication
+		// $mail->SMTPSecure = "tls";
+		// $mail->Port = 587;
 
-		$mail->Username = "cuong3600@gmail.com";  // SMTP username
-		$mail->Password = "55606025663"; // SMTP password
+		// $mail->Username = "cuong3600@gmail.com";  // SMTP username
+		// $mail->Password = "Scolllock210"; // SMTP password
 
-		$mail->setFrom('cuong3600@gmail.com', 'Mailer');
+		// $mail->setFrom('cuong3600@gmail.com', 'Mailer');
 
-		$mail->addAddress($data[0]['email'], $data[0]['fullName']);
-		// $mail->addAddress("huynhkynhatcuong@gmail.com", "CuongHuynh");
+		// $mail->addAddress($data[0]['email'], $data[0]['fullName']);
+		// // $mail->addAddress("huynhkynhatcuong@gmail.com", "CuongHuynh");
 
-		$mail->WordWrap = 50;
-		$mail->isHTML(true);
-		$mail->Subject = "You have received new password from Wogomin!";
+		// $mail->WordWrap = 50;
+		// $mail->isHTML(true);
+		// $mail->Subject = "You have received new password from Wogomin!";
 
-		$mail->Body    = $mailBody;
-		$mail->AltBody = $mailBody;
+		// $mail->Body    = $mailBody;
+		// $mail->AltBody = $mailBody;
 
-		if(!$mail->Send()) {
-			// echo "Mailer Error: " . $mail->ErrorInfo;
-			echo 0;
-			exit;
-		} else {
-			$t = $this->updateData('user', 'password', md5($mailBody), 'id', $_SESSION['user']);
-			if ($t === false) { // can not update
-				echo 0;
-				die();
-			} else {
-				echo 1;
-				die();
-			}
-		}
+		// if(!$mail->Send()) {
+		// 	// echo "Mailer Error: " . $mail->ErrorInfo;
+		// 	echo 0;
+		// 	exit;
+		// } else {
+		// 	$t = $this->updateData('user', 'password', md5($mailBody), 'id', $_SESSION['user']);
+		// 	if ($t === false) { // can not update
+		// 		echo 0;
+		// 		die();
+		// 	} else {
+		// 		echo 1;
+		// 		die();
+		// 	}
+		// }
     }
 }
 ?>

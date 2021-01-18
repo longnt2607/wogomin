@@ -75,8 +75,8 @@
 			<hr>
 			<div class="row">
 				<div class="col-md-5">
-					<form action="" method="post">
-						<select name="" id="" class="">
+					<form>
+						<select name="" id="bank_code" class="">
 							<option value="">Choose the bank *</option>
 							<option value="NCB"> Ngan hang NCB</option>
                             <option value="AGRIBANK"> Ngan hang Agribank</option>
@@ -100,8 +100,13 @@
                             <option value="OCB"> Ngan hang OCB</option>
                             <option value="IVB"> Ngan hang IVB</option>
 						</select><br>
-						<input type="number" name="amount" id="amount" placeholder="Minimum 10000 VND">
+						<small class="error" id="bank_codeE"></small>
+
+						<input type="number" name="amount" id="amount" placeholder="Minimum 10000 VND" value="10000">
+						<small class="error" id="amountE"></small>
+
 						<div id="reCAPTCHA"></div>
+
 						<button class="btn btn-confirm" id="btnPopup">Confirm Payment</button>
 					</form>
 				</div>
@@ -142,64 +147,45 @@
 	</script>
 	<script type="text/javascript">
 		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('reCAPTCHA', {
+			size: "invisible",
 			'callback': (response) => {
-			// reCAPTCHA solved, allow signInWithPhoneNumber.
-			// ...
+
 			},
 			'expired-callback': () => {
-			// Response expired. Ask user to solve reCAPTCHA again.
-			// ...
+
 			}
 		});
 		window.recaptchaVerifier.render();
 
 		$("#btnPopup").click(function () {
-			$.post("/wogomin/home/ATMPayment", { 
-	     		phoneNumber: phoneValue,
-	     		password: passValue
-	     	}, function(x) {
-	     		// swal(data);
-		        if (x.data == 1) {
-		        	// swal('Welcome back');
-	                // window.location.href = "./index"; // homepage.php
-					if (window.vnpay) {
-						vnpay.open({width: 768, height: 600, url: x.data});
-					} else {
-						location.href = x.data;
-					}
-					return false;
-                } else {
-                	swal({
-                		title: "Error",
-                		text: x.Message,
-                		icon: "error",
-                		button: "OK",
-                	});
-                }
-			});
+			var amount = $('#amount').val();
+			var bank_code = $('#bank_code').val();
+			// swal(amount + " " + bank_code);
 
-                // var postData = $("#create_form").serialize();
-                // var submitUrl = $("#create_form").attr("action");
-                // $.ajax({
-                //     type: "POST",
-                //     url: submitUrl,
-                //     data: postData,
-                //     dataType: 'JSON',
-                //     success: function (x) {
-                //         if (x.code === '00') {
-                //             if (window.vnpay) {
-                //                 vnpay.open({width: 768, height: 600, url: x.data});
-                //             } else {
-                //                 location.href = x.data;
-                //             }
-                //             return false;
-                //         } else {
-                //             alert(x.Message);
-                //         }
-                //     }
-                // });
-                // return false;
-            });
+			if (amount == '') {
+				$("#amountE").text("Please fill in this field");
+	            return false;
+			} else {
+				$("#amountE").text("");
+			}
+
+			if (bank_code == '') {
+				$("#bank_codeE").text("Please choose the bank");
+	            return false;
+			} else {
+				$("#bank_codeE").text("");
+			}
+
+			if (amount != '' && bank_code != '') {
+				$.post("/wogomin/home/ATMPayment", { 
+		     		amount: amount,
+		     		bank_code: bank_code
+		     	}, function(x) {
+		     		var data = JSON.parse(x);
+		     		window.location.href = data.data;
+				});
+			}
+        });
 	</script>
 </body>
 </html>

@@ -147,5 +147,9 @@ class Home extends Controller{
     function ATMPayment() {
         $this->payment->popupPayment();
     }
+
+    function updateWallet() {
+        $this->payment->updateWallet();
+    }
 }
 ?>

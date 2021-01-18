@@ -56,7 +56,7 @@
                     <div id="code-member">
                       <small>Code</small>
                     </div>
-                    <div class="input-icons1">
+                    <div class="input-icons">
                       <section class="w-100 text-center">
                         <div class="otp-content text-center">
                         </div>
@@ -67,12 +67,15 @@
                       <i class="fa fa-eye" id="togglePassword"> </i>
                     </div>
                     <small id="passE"></small>
+
                     <div class="input-icons">
                       <input class="input-field" type="password" name="cfpass" id="cfpassword" placeholder=" Confirm Password">
                       <i class="fa fa-eye" id="togglecfPassword"> </i>
-                      <small id="cfpass"></small>
                     </div>
+                    <small id="cfpass"></small>
+
                     <div id="recaptcha-container"></div>
+
                     <div id="ip2">
                       <button type="submit" class="btn-login" id="buttonsubmit">Change Password</button>
                     </div>
@@ -115,6 +118,10 @@
             });
           });
 
+          function isPass(pass) {
+            return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(pass);
+          }
+
           let params = new URLSearchParams(location.search);
           var phoneNumber = params.get('phone');
 
@@ -143,6 +150,7 @@
 
             window.confirmationResult.confirm(inputValues)
             .then(function(result) {
+              // swal('ok');
               var passValue = $('input[name=pass]').val();
               var cfpassValue = $('input[name=cfpass]').val();
 
@@ -172,9 +180,11 @@
 
               if (passValue != '' && cfpassValue != '') {
                 let params = new URLSearchParams(location.search);
-                var phoneNumber = params.get('phone');
+                var phoneValue = params.get('phone');
+
                 $.post("/wogomin/home/renewPassword", { 
-                  phoneNumber: phoneNumber
+                  phoneNumber: phoneValue,
+                  newPass: passValue
                 }, function(data) {
                   // swal(data);
                   if (data == 1) {
@@ -192,7 +202,7 @@
                   } else {
                     swal({
                       title: "Error",
-                      text: "There was an error. Please try again later",
+                      text: "There was an error. Please try again later" + data,
                       icon: "error",
                       button: "OK",
                     });
@@ -206,7 +216,7 @@
                 icon: "error",
                 button: "OK",
               });
-                // swal(error.message);
+                swal(error.message);
             });
           });
         </script>

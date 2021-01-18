@@ -118,3 +118,7 @@ a.bank-item img {
     display:inline-block;
     margin-right:5px;
 }
+
+.error {
+	color: red;
+}

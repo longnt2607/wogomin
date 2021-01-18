@@ -24,7 +24,7 @@
 
         public function updateData($table, $column, $value, $where, $value2){
             $sql = 'update '.$table.' set '.$column.' = "'.$value .'" where '.$where.' = "'.$value2.'"';
-            mysqli_query($this->con, $sql);
+            return mysqli_query($this->con, $sql);
         }
 
         public function insertData($sql){
